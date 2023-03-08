@@ -24,10 +24,10 @@ colors = {"graphBackground": "#F5F5F5", "background": "#ffffff", "text": "#00000
 dash_app.layout = html.Div(
     [
 
-        html.H1(children='FRC Camel Heart Time Series'),
+        html.H1(children='FRC Camel Polar Data Time Series'),
 
         html.Div(children='''
-            Data Visualizatin for FRC camels.
+            Upload your .txt file from the polar sensor and choose the parameter for plotting.
         '''),
         dcc.Upload(
             id="upload-data",
