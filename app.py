@@ -24,7 +24,7 @@ colors = {"graphBackground": "#F5F5F5", "background": "#ffffff", "text": "#00000
 dash_app.layout = html.Div(
     [
 
-        html.H1(children='FRC Camel Heart Rate vs Time'),
+        html.H1(children='FRC Camel Heart Time Series'),
 
         html.Div(children='''
             Data Visualizatin for FRC camels.
