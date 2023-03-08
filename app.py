@@ -187,6 +187,7 @@ def parse_data(contents, filename):
                           #you have to kind of define what are the values in columns,for example second column includes:
                           #this is how you create next line data
                           df_result.loc[i] = [first_col, second_col]
+                          i = i + 1
             else:
                   a,b,c = name.split('CHANNELS:')[-1].split(" ")
                   col = [a,b,c]
@@ -198,7 +199,7 @@ def parse_data(contents, filename):
                           #you have to kind of define what are the values in columns,for example second column includes:
                           #this is how you create next line data
                           df_result.loc[i] = [first_col, second_col,third_col]
-
+                          i = i + 1
 
             df = df_result
             cols = df.columns
