@@ -1,0 +1,8 @@
+cufflinks==0.17.3
+dash==2.8.1
+dash_core_components==2.0.0
+dash_html_components==2.0.0
+dash_table==5.0.0
+pandas==1.5.3
+plotly==5.13.1
+dash-renderer==1.9.1
