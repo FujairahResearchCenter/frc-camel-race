@@ -89,12 +89,12 @@ def update_graph(contents, filename,selected_column):
 
 
         for i in range(len(df.MS)):
-            df['MS'].iloc[i] = int(df['MS'].iloc[i])//1000
+            df['MS'].iloc[i] = int(df['MS'].iloc[i])/1000
 
 
         df['Time']= pd.to_datetime(df.MS, unit='s', errors='coerce')
         tf = df[['Time',selected_column]]
-        df.Time = df.Time.dt.strftime('%H:%M:%S')
+        df.Time = df.Time.dt.strftime('%H:%M:%S.%f')
         parameter = selected_column
 
 
