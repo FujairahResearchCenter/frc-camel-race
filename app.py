@@ -18,7 +18,7 @@ external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 
 dash_app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app = dash_app.server
-app.title = 'FRC-Camel-Race'
+#app.title = 'FRC-Camel-Race'
 
 colors = {"graphBackground": "#F5F5F5", "background": "#ffffff", "text": "#000000"}
 
