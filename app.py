@@ -191,7 +191,7 @@ def update_graph(contents, filename,selected_column):
             kf = df.iloc[[normal,indm,after]]
             #fig2 = px.scatter(df, x="Time", y="HR")
             #kf.to_excel("kf.xlsx")
-            rt = "The heart recovery rate is : "+str(round(kf['MS'].iloc[2]-kf['MS'].iloc[1],3))+" Seconds"
+            rt = "The heart recovery rate is : "+str(round(kf['MS'].iloc[2]-kf['MS'].iloc[1],3))+" Seconds"+', which is '+str(datetime.timedelta(seconds=int(kf['MS'].iloc[2]-kf['MS'].iloc[1])))+ " HH:MM:SS" 
 
 
 
