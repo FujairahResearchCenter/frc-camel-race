@@ -200,7 +200,7 @@ def update_graph(contents, filename,selected_column):
     
         fig = px.line(df, x='Time', y=parameter,title=rt)
         # plot only Google data for year 2018 with range slider
-        fig = px.line(df, x='Time', y=parameter)
+        #fig = px.line(df, x='Time', y=parameter)
         fig.update_xaxes(
             rangeslider_visible=True,
             rangeselector=dict(
