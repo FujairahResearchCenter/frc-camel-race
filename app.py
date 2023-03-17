@@ -49,6 +49,8 @@ dash_app.layout = html.Div(
         dcc.Dropdown(
         id='column-dropdown'
         ),
+        dcc.Input(id="input2", type="text", placeholder="Training Time in seconds"),
+        html.Button('Submit', id='submit-val', n_clicks=0),
         dcc.Graph(id="Mygraph"),
         html.Div(id="stat-data-upload"),
         html.Div(id="output-data-upload"),
@@ -132,11 +134,14 @@ def update_graph(selected_column):
 Input('upload-data', 'contents'),
 Input('upload-data', 'filename'),
 Input('column-dropdown', 'value'),
-])
+Input('submit-val', 'n_clicks'),
+State('input2', 'value'),
+]
+)
 
 
 
-def update_graph(contents, filename,selected_column):
+def update_graph(contents, filename,selected_column,cli,ttime):
     
     x = []
     y = []
@@ -144,7 +149,7 @@ def update_graph(contents, filename,selected_column):
     df = pd.DataFrame(columns =['Time',"Parameter"])
     parameter = "Parameter"
     rt = 'Graph'
-    if contents and selected_column:
+    if contents and selected_column and ttime:
         contents = contents[0]
         filename = filename[0]
         df = parse_data(contents, filename)
@@ -188,10 +193,24 @@ def update_graph(contents, filename,selected_column):
 
                 
 
-            kf = df.iloc[[normal,indm,after]]
+            
             #fig2 = px.scatter(df, x="Time", y="HR")
             #kf.to_excel("kf.xlsx")
-            rt = "The heart recovery rate is : "+str(round(kf['MS'].iloc[2]-kf['MS'].iloc[1],3))+" Seconds"+', which is '+str(datetime.timedelta(seconds=int(kf['MS'].iloc[2]-kf['MS'].iloc[1])))+ " HH:MM:SS" 
+            tt = ''
+            if str(ttime).isdigit():
+                tt = int(ttime)
+                nt = float(round(df['MS'].iloc[normal]+tt,3))
+                #df.to_excel("ksssf.xlsx")
+                nts = min(df.MS.tolist(), key=lambda x:abs(x-nt)) #nearest value
+                after = df.MS.tolist().index(nts)
+                kf = df.iloc[[normal,indm,after]]
+            else:
+                kf = df.iloc[[normal,indm,after]]
+            
+                
+                
+                
+            rt = "The heart recovery ration is : "+str(round(round(kf['HR'].iloc[1]-kf['HR'].iloc[2],3)/round(kf['MS'].iloc[2]-kf['MS'].iloc[1],3),3))+". The Peak happened after "+ str(round(kf['MS'].iloc[1]-kf['MS'].iloc[0],3))+" Seconds"+', which is '+str(datetime.timedelta(seconds=int(kf['MS'].iloc[1]-kf['MS'].iloc[0])))+ " HH:MM:SS" 
 
 
 
